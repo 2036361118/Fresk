@@ -4,7 +4,6 @@ import android.annotation.SuppressLint;
 import android.os.Build;
 import android.os.Environment;
 import android.support.annotation.RequiresApi;
-import android.util.Log;
 
 import com.asterism.fresk.R;
 import com.asterism.fresk.contract.IAddBookContract;
@@ -18,9 +17,8 @@ import com.asterism.fresk.util.FileUtils;
 
 import java.io.File;
 import java.io.IOException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -32,7 +30,6 @@ import io.reactivex.ObservableOnSubscribe;
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
-import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 
 /**
@@ -61,7 +58,7 @@ public class AddBookPresenter extends BasePresenter<IAddBookContract.View>
         // TODO: 2019-07-11 最后章节与书籍名称后面针对书籍类型需要更改写法
         bookBean.setLastChapter("从未阅读");
         bookBean.setName(FileUtils.getFileSimpleName(path));
-        bookBean.setReadDate(DateUtils.getNowToString());
+        bookBean.setReadDate(new Date());
         bookBean.setReadProgress(0);
         bookBean.setReadTiming(0);
         bookBean.setType(bookTypeBean);
